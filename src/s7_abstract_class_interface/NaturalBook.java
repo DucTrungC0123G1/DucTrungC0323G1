@@ -24,7 +24,7 @@ public class NaturalBook extends Book implements IBook {
 
     @Override
     public String toString() {
-        return "NaturalBook{" +super.getBookName()+","+super.getPublishCompany()+","+super.getYearPublish()+
+        return "NaturalBook{" +super.getBookName()+","+super.getPublishCompany()+","+super.getYearPublish()+","+
                 "quantityPublish=" + quantityPublish +
                 '}';
     }

@@ -5,10 +5,19 @@ public class Employee {
     private int telephone;
     private String position;
     //private thể hiện tính bao đóng- ngăn chặn truy cập trực tiếp từ bên ngoài
-   static String companyName;
-    static {
+   private static String companyName;
+   static {
         companyName = "ABC";
     }
+
+    public static String getCompanyName() {
+        return companyName;
+    }
+
+    public static void setCompanyName(String companyName) {
+        Employee.companyName = companyName;
+    }
+
     //static thuộc tính dùng chung cho các đối tượng của lớp
     public Employee() {
     }

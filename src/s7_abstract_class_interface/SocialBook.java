@@ -24,7 +24,7 @@ public class SocialBook extends Book implements IBook{
 
     @Override
     public String toString() {
-        return "SocialBook{" +super.getBookName()+","+super.getPublishCompany()+","+super.getYearPublish()+
+        return "SocialBook{" +super.getBookName()+","+super.getPublishCompany()+","+super.getYearPublish()+","+
                 "author='" + author + '\'' +
                 '}';
     }
