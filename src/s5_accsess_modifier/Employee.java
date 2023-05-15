@@ -5,7 +5,7 @@ public class Employee {
     private int telephone;
     private String position;
     //private thể hiện tính bao đóng- ngăn chặn truy cập trực tiếp từ bên ngoài
-    static String companyName;
+   static String companyName;
     static {
         companyName = "ABC";
     }
