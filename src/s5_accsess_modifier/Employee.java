@@ -13,12 +13,8 @@ public class Employee {
     public static String getCompanyName() {
         return companyName;
     }
-
-    public static void setCompanyName(String companyName) {
-        Employee.companyName = companyName;
-    }
-
-    //static thuộc tính dùng chung cho các đối tượng của lớp
+    //static thuộc tính dùng chung cho các đối tượng của lớp.
+    // Nếu có private dùng getter để truy cập biến.
     public Employee() {
     }
 
