@@ -5,7 +5,7 @@ public class Circle {
 
     private String color;
     private double radius;
-    //không được kế thừa
+    //được kế thừa
 
     public Circle() {
     }
