@@ -79,4 +79,9 @@ public class Fruit {
                 ", price='" + price + '\'' +
                 '}';
     }
+
+    public String getFileFruitToCsv() {
+        return this.nameFruit + "," + this.typeFruit + "," + this.dateOfManu + "," + this.expDate + "," + this.origin +
+                "," + this.price;
+    }
 }

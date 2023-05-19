@@ -33,6 +33,5 @@ public class ServiceFruit implements IServiceFruit{
         String newPrice = sc.nextLine();
         Fruit fruit = new Fruit(newName,newType,newDateManu,newExpDate,newOrigin,newPrice);
         repositoryFruit.addNewFruit(fruit);
-
     }
 }

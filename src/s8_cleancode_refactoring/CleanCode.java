@@ -1,6 +1,6 @@
 package s8_cleancode_refactoring;
 
-public class CleanCode  {
+public class CleanCode {
     public int sum(int number1, int number2, int number3) {
         return number1 + number2 + number3;
     }
@@ -8,18 +8,22 @@ public class CleanCode  {
     public boolean isLeapYear(int year) {
         if (year % 4 == 0 && year % 100 != 0) {
             return true;
-        }if (year % 400 == 0) {
+        }
+        if (year % 400 == 0) {
             return true;
         }
         return false;
     }
 
-    EmployeeDetails employeeDetails = new EmployeeDetails();
+    public EmployeeDetails employeeDetails(EmployeeDetails employeeDetails) {
+        return employeeDetails;
+    }
 
-    public int getDayOfMonth(int month, int year){
+
+    public int getDayOfMonth(int month, int year) {
         boolean flag = true;
         do {
-            switch (month){
+            switch (month) {
                 case 1:
                 case 3:
                 case 5:
@@ -37,13 +41,13 @@ public class CleanCode  {
                     return 30;
                 case 2:
                     flag = false;
-                    return isLeapYear(year) ? 29:28;
+                    return isLeapYear(year) ? 29 : 28;
                 default:
-                    flag =true;
+                    flag = true;
                     return -1;
             }
 
-        }while (flag);
+        } while (flag);
 
     }
 

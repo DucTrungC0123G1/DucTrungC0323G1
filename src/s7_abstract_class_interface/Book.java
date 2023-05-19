@@ -1,6 +1,6 @@
 package s7_abstract_class_interface;
 
-public abstract class Book{
+public abstract class Book {
     private String bookName;
     private String publishCompany;
     private String yearPublish;
@@ -43,7 +43,10 @@ public abstract class Book{
         return "Book{" +
                 "bookName='" + bookName + '\'' +
                 ", publishCompany='" + publishCompany + '\'' +
-                ", yearPublish='" + yearPublish + '\'' +
-                '}';
+                ", yearPublish='" + yearPublish + '\'' + "}"
+                ;
+    }
+
+    public void displayBook() {
     }
 }
