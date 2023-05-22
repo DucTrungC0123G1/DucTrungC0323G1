@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ServiceFruit implements IServiceFruit {
-    Scanner sc = new Scanner(System.in);
+   private Scanner sc = new Scanner(System.in);
     private RepositoryFruit repositoryFruit = new RepositoryFruit();
 
     @Override

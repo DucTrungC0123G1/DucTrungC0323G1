@@ -5,9 +5,9 @@ import s10_list.service.ServiceFruit;
 import java.util.Scanner;
 
 public class FruitController {
-    Scanner sc = new Scanner(System.in);
+   private Scanner sc = new Scanner(System.in);
    private ServiceFruit serviceFruit = new ServiceFruit();
-    public void showMenuFruit(){
+   public void showMenuFruit(){
         boolean flag = true;
         do {
             System.out.println("MenuFruit\n" +
