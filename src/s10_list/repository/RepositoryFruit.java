@@ -11,6 +11,7 @@ public class RepositoryFruit implements IRepositoryFruit {
     private static final String PATH = "D:\\CodeGym\\C0323G1_NguyenDucTrung\\Module 2\\untitled\\src\\s10_list\\file\\fruit.csv";
 
     private List<Fruit> fruitList = new ArrayList<>();
+
 //    static {
 //        Fruit fruit1 = new Fruit("Cam","1","20/11/2020","30/11/2020","China","20000");
 //        Fruit fruit2 = new Fruit("Oi","1","20/11/2020","30/11/2020","China","20000");
