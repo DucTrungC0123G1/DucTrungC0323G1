@@ -20,7 +20,7 @@ public class RepositoryFruit implements IRepositoryFruit {
 //        fruitList.add(fruit3);
 //    }
     @Override
-    public List<Fruit> getFruit() {
+   public List<Fruit> getFruit() {
         fruitList = WriteAndReadFile.readFileFruitFromCsv(PATH);
         return fruitList;
     }

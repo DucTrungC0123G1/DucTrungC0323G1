@@ -8,7 +8,7 @@ public class Fruit {
     private String origin;
     private String price;
 
-    public Fruit(String nameFruit, String typeFruit, String dateOfManu, String expDate, String origin, String price) {
+     public Fruit(String nameFruit, String typeFruit, String dateOfManu, String expDate, String origin, String price) {
         this.nameFruit = nameFruit;
         this.typeFruit = typeFruit;
         this.dateOfManu = dateOfManu;

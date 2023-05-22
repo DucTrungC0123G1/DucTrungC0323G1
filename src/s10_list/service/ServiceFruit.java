@@ -6,12 +6,13 @@ import s10_list.repository.RepositoryFruit;
 import java.util.List;
 import java.util.Scanner;
 
-public class ServiceFruit implements IServiceFruit{
+public class ServiceFruit implements IServiceFruit {
     Scanner sc = new Scanner(System.in);
-    RepositoryFruit repositoryFruit= new RepositoryFruit();
+    private RepositoryFruit repositoryFruit = new RepositoryFruit();
+
     @Override
     public void displayFruit() {
-        List<Fruit>fruitList = repositoryFruit.getFruit();
+        List<Fruit> fruitList = repositoryFruit.getFruit();
         for (Fruit f : fruitList) {
             System.out.println(f);
         }
@@ -31,7 +32,7 @@ public class ServiceFruit implements IServiceFruit{
         String newOrigin = sc.nextLine();
         System.out.print("Enter Price Fruit: ");
         String newPrice = sc.nextLine();
-        Fruit fruit = new Fruit(newName,newType,newDateManu,newExpDate,newOrigin,newPrice);
+        Fruit fruit = new Fruit(newName, newType, newDateManu, newExpDate, newOrigin, newPrice);
         repositoryFruit.addNewFruit(fruit);
     }
 }
