@@ -18,4 +18,36 @@ public class TruckRepository implements ITruckRepository{
 
         return truckList;
     }
+
+    @Override
+    public void addNewTruck(Truck truck) {
+        truckList.add(truck);
+    }
+
+    @Override
+    public Truck getByLicenseTruck(String license) {
+        for (Truck t : truckList) {
+            if (t.getLicensePlate().equals(license)){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void removeTruck(Truck truck) {
+        truckList.remove(truck);
+    }
+
+    @Override
+    public void searchTruck(String license) {
+        for (int i = 0; i < truckList.size(); i++) {
+            if (truckList.get(i).getLicensePlate().equals(license)){
+                System.out.println(truckList.get(i));
+            }
+
+        }
+    }
+
+
 }

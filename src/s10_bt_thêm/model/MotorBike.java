@@ -21,8 +21,8 @@ public class MotorBike extends Vehicle{
 
     @Override
     public String toString() {
-        return "MotorBike{" +
-                "capacity='" + capacity + '\'' +
-                '}';
+        return "MotorBike :{"+ "Motor License: "+ super.getLicensePlate()+"---"+"Motor Manufacture: "+super.getManufacture()+
+                "---"+"Motor YearOfManu: "+super.getYearOfManufacture()+"---"+"Motor Owner: "+super.getOwner()+"---"+
+                "Motor Capacity :"+capacity+"}";
     }
 }

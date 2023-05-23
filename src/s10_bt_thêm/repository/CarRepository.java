@@ -23,4 +23,29 @@ public class CarRepository implements ICarRepository {
         carList.add(car);
 
     }
+
+    @Override
+    public Car getByLicenseCar(String license) {
+        for (Car c : carList) {
+            if (c.getLicensePlate().equals(license)){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void removeCar(Car car) {
+        carList.remove(car);
+    }
+
+    @Override
+    public void searchCar(String license) {
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getLicensePlate().equals(license)){
+                System.out.println(carList.get(i));
+            }
+
+        }
+    }
 }

@@ -3,9 +3,6 @@ package s10_bt_thêm.model;
 public class Car extends Vehicle{
     private int numberSeat;
     private String typeCar;
-    public Car(){
-
-    }
 
     public Car(String licensePlate, String manufacture, String yearOfManufacture, String owner,int numberSeat, String typeCar) {
         super(licensePlate, manufacture, yearOfManufacture, owner);

@@ -4,4 +4,8 @@ public interface IMotorBikeService {
     void displayMotorBike();
 
     void addNewMotorBike();
+
+    void deleteMotor();
+
+    void searchMotorBike();
 }

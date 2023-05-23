@@ -69,8 +69,63 @@ public class VehicleManager {
                     }
                     break;
                 case "3":
+                    boolean flagDel = true;
+                    do {
+                        System.out.println("Enter Your Choice\n" +
+                                "1. Delete Car\n" +
+                                "2. Delete Truck\n" +
+                                "3. Delete MotorBike\n" +
+                                "0. Return Menu");
+                        String choiceDelete = sc.nextLine();
+                        switch (choiceDelete){
+                            case "1":
+                                carService.deleteCar();
+                                break;
+                            case "2":
+                                truckService.deleteTruck();
+                                break;
+                            case "3":
+                                motorBikeService.deleteMotor();
+                                break;
+                            case "0":
+                                flagDel = false;
+                                break;
+                            default:
+                                System.out.println("Choice Again");
+                                flagDel= true;
+                                break;
+                        }
+                    }while (flagDel);
+
                     break;
                 case "4":
+                    boolean flagSearch = true;
+                    do {
+                        System.out.println("Enter Your Choice\n" +
+                                "1. Search Car\n" +
+                                "2. Search Truck\n" +
+                                "3. Search MotorBike\n" +
+                                "0. ReturnMenu");
+                        String choiceSearch = sc.nextLine();
+                        switch (choiceSearch){
+                            case "1":
+                                carService.searchCar();
+                                break;
+                            case "2":
+                                truckService.searchTruck();
+                                break;
+                            case "3":
+                                motorBikeService.searchMotorBike();
+                                break;
+                            case "0":
+                                flagSearch= false;
+                                break;
+                            default:
+                                System.out.println("Choice Again");
+                                flagSearch = true;
+                                break;
+                        }
+                    }while (flagSearch);
                     break;
                 case "5":
                     System.out.println("Exit Menu");

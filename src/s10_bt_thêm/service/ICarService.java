@@ -9,4 +9,7 @@ public interface ICarService {
     void addNewCar();
 
 
+    void deleteCar();
+
+    void searchCar();
 }

@@ -17,4 +17,36 @@ public class MotorRepository implements IMotorRepository {
 
         return motorBikeList;
     }
+
+    @Override
+    public void addNewMotor(MotorBike motorBike) {
+        motorBikeList.add(motorBike);
+
+    }
+
+    @Override
+    public MotorBike getByLicenseMotor(String license) {
+        for (MotorBike m : motorBikeList) {
+            if (m.getLicensePlate().equals(license))
+                return m;
+        }
+        return null;
+    }
+
+    @Override
+    public void removeMotor(MotorBike motorBike) {
+        motorBikeList.remove(motorBike);
+    }
+
+    @Override
+    public void searchMotor(String license) {
+        for (int i = 0; i <motorBikeList.size(); i++) {
+            if (motorBikeList.get(i).getLicensePlate().equals(license)){
+                System.out.println(motorBikeList.get(i));
+            }
+
+        }
+    }
+
+
 }
