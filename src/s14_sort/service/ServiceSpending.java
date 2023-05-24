@@ -1,16 +1,18 @@
-package s13_search.service;
+package s14_sort.service;
 
-import s13_search.model.Spending;
-import s13_search.repository.IRepositorySpending;
-import s13_search.repository.RepositorySpending;
+import s14_sort.model.MoneyCompareSpending;
+import s14_sort.model.Spending;
+import s14_sort.repository.IRepositorySpending;
+import s14_sort.repository.RepositorySpending;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class ServiceSpending implements IServiceSpending {
     private Scanner sc = new Scanner(System.in);
     private IRepositorySpending repositorySpending = new RepositorySpending();
+    private List<Spending> spendingList = repositorySpending.getAll();
 
     @Override
     public void display() {
@@ -32,7 +34,7 @@ public class ServiceSpending implements IServiceSpending {
         System.out.print("Nhập NgàyChi Tiêu: ");
         String day = sc.nextLine();
         System.out.print("Nhập Tiền Chi Tiêu: ");
-        String money = sc.nextLine();
+        Integer money = Integer.parseInt(sc.nextLine());
         System.out.print("Nhập Mô Tả Chi Tiêu: ");
         String other = sc.nextLine();
         Spending spending = new Spending(id, name, day, money, other);
@@ -76,7 +78,7 @@ public class ServiceSpending implements IServiceSpending {
             System.out.print("Sửa Ngày: ");
             spending.setDaySpend(sc.nextLine());
             System.out.print("Sửa Tiền: ");
-            spending.setMoneySpend(sc.nextLine());
+            spending.setMoneySpend(Integer.parseInt(sc.nextLine()));
             System.out.print("Sửa Thêm: ");
             spending.setOtherSpend(sc.nextLine());
             repositorySpending.editSpend(idEdit, spending);
@@ -95,6 +97,24 @@ public class ServiceSpending implements IServiceSpending {
         System.out.print("Nhập Tên Để Tìm Kiếm: ");
         String nameSearch = sc.nextLine();
         repositorySpending.nameSearch(nameSearch);
+    }
+
+    @Override
+    public void sortName() {
+        System.out.println("Sắp xếp Theo Tên Chi Tiêu");
+        Collections.sort(spendingList);
+        for (Spending s : spendingList) {
+            System.out.println(s);
+        }
+    }
+
+    @Override
+    public void sortMoney() {
+        System.out.println("Sắp Xếp Theo Tiền Chi Tiêu");
+        Collections.sort(spendingList, new MoneyCompareSpending());
+        for (Spending s : spendingList) {
+            System.out.println(s);
+        }
     }
 
 

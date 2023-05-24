@@ -1,6 +1,4 @@
-package s13_search.service;
-
-import s13_search.model.Spending;
+package s14_sort.service;
 
 public interface IServiceSpending {
     void display();
@@ -16,4 +14,7 @@ public interface IServiceSpending {
     void searchByName();
 
 
+    void sortName();
+
+    void sortMoney();
 }

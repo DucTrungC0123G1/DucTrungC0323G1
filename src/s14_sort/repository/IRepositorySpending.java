@@ -1,6 +1,6 @@
-package s13_search.repository;
+package s14_sort.repository;
 
-import s13_search.model.Spending;
+import s14_sort.model.Spending;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ public interface IRepositorySpending {
     void idSearch(String id);
 
     void nameSearch(String name);
+
 
 
 }

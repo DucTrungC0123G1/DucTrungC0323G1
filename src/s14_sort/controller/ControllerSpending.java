@@ -1,9 +1,7 @@
-package s13_search.controller;
+package s14_sort.controller;
 
-import s13_search.repository.IRepositorySpending;
-import s13_search.repository.RepositorySpending;
-import s13_search.service.IServiceSpending;
-import s13_search.service.ServiceSpending;
+import s14_sort.service.IServiceSpending;
+import s14_sort.service.ServiceSpending;
 
 import java.util.Scanner;
 
@@ -46,9 +44,10 @@ public class ControllerSpending {
                     serviceSpending.searchByName();
                     break;
                 case "7":
-
+                    serviceSpending.sortName();
                     break;
                 case "8":
+                    serviceSpending.sortMoney();
                     break;
                 case "0":
                     System.out.println("Exit Menu");
