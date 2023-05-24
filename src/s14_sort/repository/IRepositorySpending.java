@@ -15,9 +15,9 @@ public interface IRepositorySpending {
 
     void editSpend(String id, Spending spending);
 
-    void idSearch(String id);
+    Spending idSearch(String id);
 
-    void nameSearch(String name);
+    Spending nameSearch(String name);
 
 
 

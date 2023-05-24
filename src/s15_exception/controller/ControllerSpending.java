@@ -1,9 +1,7 @@
-package s13_search.controller;
+package s15_exception.controller;
 
-import s13_search.repository.IRepositorySpending;
-import s13_search.repository.RepositorySpending;
-import s13_search.service.IServiceSpending;
-import s13_search.service.ServiceSpending;
+import s15_exception.service.IServiceSpending;
+import s15_exception.service.ServiceSpending;
 
 import java.util.Scanner;
 
@@ -22,6 +20,8 @@ public class ControllerSpending {
                     "4. Edit\n" +
                     "5. Search by Id\n" +
                     "6. Search by Name\n" +
+                    "7. Sort by Name\n" +
+                    "8. Sort by Money\n" +
                     "0. Exit");
             String choice = sc.nextLine();
             switch (choice) {
@@ -42,6 +42,12 @@ public class ControllerSpending {
                     break;
                 case "6":
                     serviceSpending.searchByName();
+                    break;
+                case "7":
+                    serviceSpending.sortName();
+                    break;
+                case "8":
+                    serviceSpending.sortMoney();
                     break;
                 case "0":
                     System.out.println("Exit Menu");

@@ -1,6 +1,6 @@
-package s14_sort.repository;
+package s15_exception.repository;
 
-import s14_sort.model.Spending;
+import s15_exception.model.Spending;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class RepositorySpending implements IRepositorySpending {
     @Override
     public Spending idSearch(String id) {
         for (Spending s : spendingList) {
-            if (s.getIdSpend().equals(id)) {
+            if (s.getIdSpend().equals(id)){
                 return s;
             }
         }return null;

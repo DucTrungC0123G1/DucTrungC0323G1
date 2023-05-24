@@ -55,25 +55,29 @@ public class RepositorySpending implements IRepositorySpending {
     }
 
     @Override
-    public void idSearch(String id) {
-        for (int i = 0; i < spendingList.size(); i++) {
-            if (spendingList.get(i).getIdSpend().equals(id)) {
-                System.out.println(spendingList.get(i));
+    public Spending idSearch(String id) {
+        for (Spending s : spendingList) {
+            if (s.getIdSpend().equals(id)){
+                return s;
             }
         }
+        return null;
     }
+
 
     @Override
-    public void nameSearch(String name) {
-        for (int i = 0; i < spendingList.size(); i++) {
-            if (spendingList.get(i).getNameSpend().contains(name)) {
-                System.out.println(spendingList.get(i));
-            } else {
-                System.out.println("Không Tìm Thấy Tên ");
-                break;
+    public Spending nameSearch(String name) {
+        for (Spending s : spendingList) {
+            if (s.getNameSpend().contains(name)){
+                return s;
             }
         }
+        return null;
+
     }
-
-
 }
+
+
+
+
+

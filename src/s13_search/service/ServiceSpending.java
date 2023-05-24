@@ -87,15 +87,21 @@ public class ServiceSpending implements IServiceSpending {
     public void searchById() {
         System.out.print("Nhập Id Để Tìm Kiếm: ");
         String idSearch = sc.nextLine();
-        repositorySpending.idSearch(idSearch);
+        if (repositorySpending.idSearch(idSearch) == null) {
+            System.out.println("Không tìm thấy ID");
+        } else {
+            System.out.println(repositorySpending.idSearch(idSearch));
+        }
     }
 
     @Override
     public void searchByName() {
         System.out.print("Nhập Tên Để Tìm Kiếm: ");
         String nameSearch = sc.nextLine();
-        repositorySpending.nameSearch(nameSearch);
+        if (repositorySpending.nameSearch(nameSearch) == null) {
+            System.out.println("Không Tìm Thấy Tên");
+        } else {
+            System.out.println(repositorySpending.nameSearch(nameSearch));
+        }
     }
-
-
 }

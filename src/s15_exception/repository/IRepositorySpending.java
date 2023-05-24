@@ -1,6 +1,6 @@
-package s13_search.repository;
+package s15_exception.repository;
 
-import s13_search.model.Spending;
+import s15_exception.model.Spending;
 
 import java.util.List;
 
@@ -17,7 +17,8 @@ public interface IRepositorySpending {
 
     Spending idSearch(String id);
 
-   Spending nameSearch(String name);
+    Spending nameSearch(String name);
+
 
 
 }

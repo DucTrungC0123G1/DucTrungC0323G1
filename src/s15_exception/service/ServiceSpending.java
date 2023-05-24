@@ -1,9 +1,9 @@
-package s14_sort.service;
+package s15_exception.service;
 
-import s14_sort.model.MoneyCompareSpending;
-import s14_sort.model.Spending;
-import s14_sort.repository.IRepositorySpending;
-import s14_sort.repository.RepositorySpending;
+import s15_exception.model.MoneyCompareSpending;
+import s15_exception.model.Spending;
+import s15_exception.repository.IRepositorySpending;
+import s15_exception.repository.RepositorySpending;
 
 import java.util.Collections;
 import java.util.List;
@@ -89,7 +89,12 @@ public class ServiceSpending implements IServiceSpending {
     public void searchById() {
         System.out.print("Nhập Id Để Tìm Kiếm: ");
         String idSearch = sc.nextLine();
-        repositorySpending.idSearch(idSearch);
+        if (repositorySpending.idSearch(idSearch)==null){
+            System.out.println("Không Tìm Thấy ID");
+        }else {
+            System.out.println(repositorySpending.idSearch(idSearch));
+        }
+
     }
 
     @Override
@@ -97,7 +102,9 @@ public class ServiceSpending implements IServiceSpending {
         System.out.print("Nhập Tên Để Tìm Kiếm: ");
         String nameSearch = sc.nextLine();
         if (repositorySpending.nameSearch(nameSearch)==null){
-
+            System.out.println("Không Tìm Thấy Tên");
+        }else {
+            System.out.println(repositorySpending.nameSearch(nameSearch));
         }
     }
 
@@ -118,6 +125,4 @@ public class ServiceSpending implements IServiceSpending {
             System.out.println(s);
         }
     }
-
-
 }
