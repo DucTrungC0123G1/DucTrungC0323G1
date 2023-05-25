@@ -1,5 +1,6 @@
 package s15_exception.controller;
 
+import s15_exception.model.UniqueIDException;
 import s15_exception.service.IServiceSpending;
 import s15_exception.service.ServiceSpending;
 

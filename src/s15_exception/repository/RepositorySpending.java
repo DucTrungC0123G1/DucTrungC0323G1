@@ -1,11 +1,14 @@
 package s15_exception.repository;
 
 import s15_exception.model.Spending;
+import s15_exception.model.UniqueIDException;
+import s15_exception.ultils.WriteAndReadSpending;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorySpending implements IRepositorySpending {
+    private static String PATH="D:\\CodeGym\\C0323G1_NguyenDucTrung\\Module 2\\untitled\\src\\s15_exception\\data\\Spending.csv";
     //String idSpend, String nameSpend, String daySpend, String moneySpend, String otherSpend
     private static List<Spending> spendingList = new ArrayList<>();
 
@@ -19,13 +22,14 @@ public class RepositorySpending implements IRepositorySpending {
 
     @Override
     public List<Spending> getAll() {
+        spendingList = WriteAndReadSpending.readFileSpendFromCsv(PATH);
         return spendingList;
     }
 
     @Override
     public void addSpend(Spending spending) {
         spendingList.add(spending);
-
+        WriteAndReadSpending.writeFileSpendToCsv(spendingList,PATH);
     }
 
     @Override
@@ -49,6 +53,7 @@ public class RepositorySpending implements IRepositorySpending {
         for (int i = 0; i < spendingList.size(); i++) {
             if (spendingList.get(i).equals(spending)) {
                 spendingList.set(i, spending);
+                WriteAndReadSpending.writeFileSpendToCsv(spendingList,PATH);
             }
         }
     }
@@ -71,6 +76,5 @@ public class RepositorySpending implements IRepositorySpending {
         }
         return null;
     }
-
 
 }

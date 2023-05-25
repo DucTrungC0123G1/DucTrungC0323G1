@@ -1,10 +1,13 @@
 package s15_exception.service;
 
+import s15_exception.model.IdNotFoundException;
 import s15_exception.model.MoneyCompareSpending;
 import s15_exception.model.Spending;
+import s15_exception.model.UniqueIDException;
 import s15_exception.repository.IRepositorySpending;
 import s15_exception.repository.RepositorySpending;
 
+import javax.swing.plaf.IconUIResource;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -20,15 +23,30 @@ public class ServiceSpending implements IServiceSpending {
         for (Spending s : spendingList) {
             System.out.println(s);
         }
-
     }
 
     //String idSpend, String nameSpend, String daySpend,
 // String moneySpend, String otherSpend
     @Override
     public void addSpend() {
-        System.out.print("Nhập Mã Chi Tiêu: ");
-        String id = sc.nextLine();
+        String id = null;
+        boolean flag = false;
+        do {
+            try {
+                System.out.print("Nhập Mã Chi Tiêu: ");
+                id = sc.nextLine();
+                for (Spending s : spendingList) {
+                    if (s.getIdSpend().equals(id)) {
+                        flag = true;
+                        throw new UniqueIDException("Trùng Mã Chi Tiêu");
+                    } else {
+                        flag = false;
+                    }
+                }
+            } catch (UniqueIDException uniqueIDException) {
+                System.out.println(uniqueIDException.getMessage());
+            }
+        } while (flag);
         System.out.print("Nhập Tên Chi Tiêu: ");
         String name = sc.nextLine();
         System.out.print("Nhập NgàyChi Tiêu: ");
@@ -45,8 +63,25 @@ public class ServiceSpending implements IServiceSpending {
     @Override
     public void delSpend() {
         display();
-        System.out.println("Nhập Mã Bạn Muốn Xóa");
-        String idDel = sc.nextLine();
+        String idDel = null;
+        boolean flagDel = false;
+       do {
+            flagDel=false;
+            try {
+                System.out.println("Nhập Mã Bạn Muốn Xóa");
+                idDel = sc.nextLine();
+                for (Spending s : spendingList) {
+                    if (s.getIdSpend().equals(idDel)) {
+                        break;
+                    } else {
+                        throw new IdNotFoundException("Mã Không Có");
+                    }
+                }
+            } catch (IdNotFoundException idNotFoundException) {
+                System.out.println(idNotFoundException.getMessage());
+                flagDel=true;
+            }
+        } while (flagDel);
         Spending spending = repositorySpending.getById(idDel);
         if (spending != null) {
             System.out.println("Bạn Có Muốn Xóa: " + spending + "--" + spending.getNameSpend());
@@ -57,9 +92,10 @@ public class ServiceSpending implements IServiceSpending {
                 repositorySpending.removeSpend(spending);
                 System.out.println("Bạn Đã Xóa Thành Công");
             }
-        } else {
-            System.out.println("Không Tìm Thấy Mã");
         }
+//        else {
+//            System.out.println("Không Tìm Thấy Mã");
+//        }
     }
 
     //String idSpend, String nameSpend, String daySpend,
@@ -89,9 +125,9 @@ public class ServiceSpending implements IServiceSpending {
     public void searchById() {
         System.out.print("Nhập Id Để Tìm Kiếm: ");
         String idSearch = sc.nextLine();
-        if (repositorySpending.idSearch(idSearch)==null){
+        if (repositorySpending.idSearch(idSearch) == null) {
             System.out.println("Không Tìm Thấy ID");
-        }else {
+        } else {
             System.out.println(repositorySpending.idSearch(idSearch));
         }
 
@@ -101,9 +137,9 @@ public class ServiceSpending implements IServiceSpending {
     public void searchByName() {
         System.out.print("Nhập Tên Để Tìm Kiếm: ");
         String nameSearch = sc.nextLine();
-        if (repositorySpending.nameSearch(nameSearch)==null){
+        if (repositorySpending.nameSearch(nameSearch) == null) {
             System.out.println("Không Tìm Thấy Tên");
-        }else {
+        } else {
             System.out.println(repositorySpending.nameSearch(nameSearch));
         }
     }

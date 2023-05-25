@@ -19,6 +19,4 @@ public interface IRepositorySpending {
 
     Spending nameSearch(String name);
 
-
-
 }

@@ -70,4 +70,7 @@ public class Spending implements Comparable<Spending>{
     public int compareTo(Spending o) {
        return this.nameSpend.compareTo(o.getNameSpend());
     }
+    public String getInfoSpendToFileCsv(){
+        return this.idSpend+","+this.nameSpend+","+this.daySpend+","+this.moneySpend+","+this.otherSpend;
+    }
 }
