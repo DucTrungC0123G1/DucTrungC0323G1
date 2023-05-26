@@ -66,14 +66,22 @@ public class RepositorySpending implements IRepositorySpending {
 
 
     @Override
-    public Spending nameSearch(String name) {
-        for (Spending s : spendingList) {
-            if (s.getNameSpend().contains(name)){
-                return s;
+    public void nameSearch(String name) {
+//        for (Spending s : spendingList) {
+//            if (s.getNameSpend().contains(name)){
+//                return s;
+//            }
+//        }
+        boolean flagSearch = true;
+        for (int i = 0; i < spendingList.size(); i++) {
+            if (spendingList.get(i).getNameSpend().contains(name)){
+                System.out.println(spendingList.get(i));
+                flagSearch = false;
             }
         }
-        return null;
-
+        if (flagSearch){
+            System.out.println("Không Tìm Thấy");
+        }
     }
 }
 

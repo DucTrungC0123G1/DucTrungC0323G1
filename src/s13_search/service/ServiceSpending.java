@@ -98,10 +98,11 @@ public class ServiceSpending implements IServiceSpending {
     public void searchByName() {
         System.out.print("Nhập Tên Để Tìm Kiếm: ");
         String nameSearch = sc.nextLine();
-        if (repositorySpending.nameSearch(nameSearch) == null) {
-            System.out.println("Không Tìm Thấy Tên");
-        } else {
-            System.out.println(repositorySpending.nameSearch(nameSearch));
-        }
+        repositorySpending.nameSearch(nameSearch);
+//        if (repositorySpending.nameSearch(nameSearch) == null) {
+//            System.out.println("Không Tìm Thấy Tên");
+//        } else {
+//            System.out.println(repositorySpending.nameSearch(nameSearch));
+//        }
     }
 }
