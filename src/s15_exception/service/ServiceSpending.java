@@ -8,6 +8,7 @@ import s15_exception.repository.IRepositorySpending;
 import s15_exception.repository.RepositorySpending;
 
 import javax.swing.plaf.IconUIResource;
+import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class ServiceSpending implements IServiceSpending {
     private Scanner sc = new Scanner(System.in);
     private IRepositorySpending repositorySpending = new RepositorySpending();
     private List<Spending> spendingList = repositorySpending.getAll();
+
 
     @Override
     public void display() {
@@ -39,8 +41,6 @@ public class ServiceSpending implements IServiceSpending {
                     if (s.getIdSpend().equals(id)) {
                         flag = true;
                         throw new UniqueIDException("Trùng Mã Chi Tiêu");
-                    } else {
-                        flag = false;
                     }
                 }
             } catch (UniqueIDException uniqueIDException) {
@@ -64,36 +64,58 @@ public class ServiceSpending implements IServiceSpending {
     public void delSpend() {
         display();
         String idDel = null;
-        boolean flagDel = false;
-        boolean checkDel = false;
-       do {
-            flagDel=false;
+        int index = 0;
+        boolean flagDel=false;
+        do {
             try {
                 System.out.println("Nhập Mã Bạn Muốn Xóa");
                 idDel = sc.nextLine();
                 for (Spending s : spendingList) {
                     if (s.getIdSpend().equals(idDel)) {
-                        checkDel = true;
+                        index = 1;
+                    }
+                    if (index == 1) {
+                        System.out.println("Bạn Có Muốn Xóa: " + s + "--" + s.getNameSpend());
+                        System.out.println("1.Có\n" +
+                                "2.Không");
+                        int choice = Integer.parseInt(sc.nextLine());
+                        if (choice == 1) {
+                            repositorySpending.removeSpend(s);
+                            System.out.println("Bạn Đã Xóa Thành Công");
+                        }
                     }
                 }
-                if (!checkDel){
+                if (index!=1) {
                     throw new IdNotFoundException("Mã Không Tồn Tại");
                 }
             } catch (IdNotFoundException idNotFoundException) {
                 System.out.println(idNotFoundException.getMessage());
+                flagDel=true;
             }
         } while (flagDel);
-        Spending spending = repositorySpending.getById(idDel);
-        if (spending != null) {
-            System.out.println("Bạn Có Muốn Xóa: " + spending + "--" + spending.getNameSpend());
-            System.out.println("1.Có\n" +
-                    "2.Không");
-            int choice = Integer.parseInt(sc.nextLine());
-            if (choice == 1) {
-                repositorySpending.removeSpend(spending);
-                System.out.println("Bạn Đã Xóa Thành Công");
-            }
-        }
+
+
+        // boolean flag= false;
+        //        do {
+        //            System.out.println("Nhập Mã Bạn Muốn Xóa");
+        //            String idDel = sc.nextLine();
+        //            Spending spending = repositorySpending.getById(idDel);
+        //            if (spending != null) {
+        //                System.out.println("Bạn Có Muốn Xóa: " + spending + "--" + spending.getNameSpend());
+        //                System.out.println("1.Có\n" +
+        //                        "2.Không\n");
+        //                int choice = Integer.parseInt(sc.nextLine());
+        //                if (choice == 1) {
+        //                    repositorySpending.removeSpend(spending);
+        //                    System.out.println("Bạn Đã Xóa Thành Công");
+        //                }
+        //            } else {
+        //                System.out.println("Không Tìm Thấy Mã");
+        //                flag = true;
+        //            }
+        //        }while (flag);
+//        Spending spending = repositorySpending.getById(idDel);
+
 //        else {
 //            System.out.println("Không Tìm Thấy Mã");
 //        }

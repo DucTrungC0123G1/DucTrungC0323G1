@@ -1,6 +1,8 @@
 package s15_exception.model;
 
-public class Spending implements Comparable<Spending>{
+import java.io.Serializable;
+
+public class Spending implements Comparable<Spending>, Serializable {
     private String idSpend;
     private String nameSpend;
     private String daySpend;

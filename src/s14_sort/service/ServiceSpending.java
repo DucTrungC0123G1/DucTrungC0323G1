@@ -45,21 +45,26 @@ public class ServiceSpending implements IServiceSpending {
     @Override
     public void delSpend() {
         display();
-        System.out.println("Nhập Mã Bạn Muốn Xóa");
-        String idDel = sc.nextLine();
-        Spending spending = repositorySpending.getById(idDel);
-        if (spending != null) {
-            System.out.println("Bạn Có Muốn Xóa: " + spending + "--" + spending.getNameSpend());
-            System.out.println("1.Có\n" +
-                    "2.Không");
-            int choice = Integer.parseInt(sc.nextLine());
-            if (choice == 1) {
-                repositorySpending.removeSpend(spending);
-                System.out.println("Bạn Đã Xóa Thành Công");
+        boolean flag= false;
+        do {
+            System.out.println("Nhập Mã Bạn Muốn Xóa");
+            String idDel = sc.nextLine();
+            Spending spending = repositorySpending.getById(idDel);
+            if (spending != null) {
+                System.out.println("Bạn Có Muốn Xóa: " + spending + "--" + spending.getNameSpend());
+                System.out.println("1.Có\n" +
+                        "2.Không\n");
+                int choice = Integer.parseInt(sc.nextLine());
+                if (choice == 1) {
+                    repositorySpending.removeSpend(spending);
+                    System.out.println("Bạn Đã Xóa Thành Công");
+                }
+            } else {
+                System.out.println("Không Tìm Thấy Mã");
+                flag = true;
             }
-        } else {
-            System.out.println("Không Tìm Thấy Mã");
-        }
+        }while (flag);
+
     }
 
     //String idSpend, String nameSpend, String daySpend,

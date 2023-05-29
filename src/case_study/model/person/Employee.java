@@ -61,4 +61,8 @@ public class Employee extends Person{
                 ", email='" + email + '\'' +
                 '}';
     }
+    public String getInfoEmployeeToCsv(){
+        return super.name+","+super.dateOfBirth+","+super.identityCarNumber+","+super.telephone+","+super.email+","+
+                this.idEmployee+","+this.levelEmployee+","+this.position+","+this.salary;
+    }
 }

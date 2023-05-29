@@ -3,7 +3,7 @@ package case_study.controller;
 import java.util.Scanner;
 
 public class FuramaController {
-    public static void displayMainMenu(){
+    public void displayMainMenu(){
         EmployeeController employeeController = new EmployeeController();
         CustomerController customerController = new CustomerController();
         FacilityController facilityController = new FacilityController();

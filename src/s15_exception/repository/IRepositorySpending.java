@@ -2,6 +2,7 @@ package s15_exception.repository;
 
 import s15_exception.model.Spending;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface IRepositorySpending {

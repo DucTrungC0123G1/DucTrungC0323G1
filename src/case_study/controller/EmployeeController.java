@@ -18,11 +18,13 @@ public class EmployeeController {
             String choice = sc.nextLine();
             switch (choice){
                 case "1":
-
+                    employeeService.displayEmployee();
                     break;
                 case "2":
+                    employeeService.addEmployee();
                     break;
                 case "3":
+                    employeeService.editEmployee();
                     break;
                 case "4":
                     flagEmployee = false;
