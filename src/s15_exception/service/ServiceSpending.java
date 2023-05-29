@@ -65,6 +65,7 @@ public class ServiceSpending implements IServiceSpending {
         display();
         String idDel = null;
         boolean flagDel = false;
+        boolean checkDel = false;
        do {
             flagDel=false;
             try {
@@ -72,14 +73,14 @@ public class ServiceSpending implements IServiceSpending {
                 idDel = sc.nextLine();
                 for (Spending s : spendingList) {
                     if (s.getIdSpend().equals(idDel)) {
-                        break;
-                    } else {
-                        throw new IdNotFoundException("Mã Không Có");
+                        checkDel = true;
                     }
+                }
+                if (!checkDel){
+                    throw new IdNotFoundException("Mã Không Tồn Tại");
                 }
             } catch (IdNotFoundException idNotFoundException) {
                 System.out.println(idNotFoundException.getMessage());
-                flagDel=true;
             }
         } while (flagDel);
         Spending spending = repositorySpending.getById(idDel);
