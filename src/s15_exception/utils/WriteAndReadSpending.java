@@ -1,4 +1,4 @@
-package s15_exception.ultils;
+package s15_exception.utils;
 
 import s15_exception.model.Spending;
 

@@ -133,24 +133,31 @@ public class EmployeeService implements IEmployeeService{
                 String choiceEdit = sc.nextLine();
                 switch (choiceEdit) {
                     case "1":
+                        System.out.print("Edit Name: ");
                         employee.setName(sc.nextLine());
                         break;
                     case "2":
+                        System.out.print("Edit DateOfBirth: ");
                         employee.setDateOfBirth(sc.nextLine());
                         break;
                     case "3":
+                        System.out.print("Edit IdentityCardNumber: ");
                        employee.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
                         break;
                     case "4":
+                        System.out.print("Edit Telephone: ");
                         employee.setTelephone(Double.parseDouble(sc.nextLine()));
                         break;
                     case "5":
-                        String editEmail = sc.nextLine();
+                        System.out.print("Edit Email: ");
+                        employee.setEmail(sc.nextLine());
                         break;
                     case "6":
-                        String editIDEmployee = sc.nextLine();
+                        System.out.print("Edit IdEmployee: ");
+                        employee.setIdEmployee(sc.nextLine());
                         break;
                     case "7":
+                        System.out.print("Edit Employee Level: ");
                         boolean flagEditLv = false;
                         do {
                             System.out.println("Choice Edit Level: \n" +
@@ -160,19 +167,18 @@ public class EmployeeService implements IEmployeeService{
                                     "4.After University\n" +
                                     "0.Return Menu\n");
                             String choiceEditLv = sc.nextLine();
-                            String editLevel = "";
                             switch (choiceEditLv) {
                                 case "1":
-                                    editLevel = "Vocational";
+                                    employee.setLevelEmployee("Vocational");
                                     break;
                                 case "2":
-                                    editLevel = "College";
+                                    employee.setLevelEmployee("College");
                                     break;
                                 case "3":
-                                    editLevel = "University";
+                                    employee.setLevelEmployee("University");
                                     break;
                                 case "4":
-                                    editLevel = "After University";
+                                    employee.setLevelEmployee("After University");
                                     break;
                                 case "0":
                                     flagEditLv = false;
@@ -185,6 +191,7 @@ public class EmployeeService implements IEmployeeService{
                         } while (flagEditLv);
                         break;
                     case "8":
+                        System.out.print("Edit Employee Position: ");
                         boolean flagEditPosition = false;
                         do {
                             System.out.println("Choice Edit Position\n" +
@@ -196,25 +203,24 @@ public class EmployeeService implements IEmployeeService{
                                     "6.Director\n" +
                                     "0.Return Menu\n");
                             String choiceEditPosition = sc.nextLine();
-                            String editPosition = "";
                             switch (choiceEditPosition) {
                                 case "1":
-                                    editPosition = "Reception";
+                                    employee.setLevelEmployee("Reception");
                                     break;
                                 case "2":
-                                    editPosition = "Staff";
+                                    employee.setLevelEmployee("Staff");
                                     break;
                                 case "3":
-                                    editPosition = "Expert";
+                                    employee.setLevelEmployee("Expert");
                                     break;
                                 case "4":
-                                    editEmail = "Super Vision";
+                                    employee.setLevelEmployee("Super Vision");
                                     break;
                                 case "5":
-                                    editEmail = "Manager";
+                                   employee.setLevelEmployee("Manager");
                                     break;
                                 case "6":
-                                    editEmail = "Director";
+                                    employee.setLevelEmployee("Director");
                                     break;
                                 case "0":
                                     flagEditPosition = false;
@@ -227,10 +233,11 @@ public class EmployeeService implements IEmployeeService{
                         } while (flagEditPosition);
                         break;
                     case "9":
-                        Double editSalary = Double.parseDouble(sc.nextLine());
+                        System.out.print("Edit Salary: ");
+                        employee.setSalary(Double.parseDouble(sc.nextLine()));
                         break;
                     case "0":
-                        flagEdit = true;
+                        flagEdit = false;
                         break;
                     default:
                         System.out.println("Choice Again");
@@ -238,8 +245,9 @@ public class EmployeeService implements IEmployeeService{
                         break;
                 }
             }while (flagEdit);
-        }employeeRepository.editEmployee(employee,idEdit);
-
-
+        }else {
+            System.out.println("ID Not Found");
+        }
+        employeeRepository.editEmployee(idEdit,employee);
     }
 }

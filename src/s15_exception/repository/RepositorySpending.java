@@ -1,11 +1,8 @@
 package s15_exception.repository;
 
 import s15_exception.model.Spending;
-import s15_exception.model.UniqueIDException;
-import s15_exception.ultils.WriteAndReadSpending;
-import s15_exception.ultils.WriteAndReadSpendingBinary;
+import s15_exception.utils.WriteAndReadSpendingBinary;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

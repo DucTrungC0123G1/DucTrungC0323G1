@@ -11,5 +11,5 @@ public interface IEmployeeRepository {
 
     Employee getById(String id);
 
-    void editEmployee(Employee employee, String id);
+    void editEmployee(String id, Employee employee);
 }
