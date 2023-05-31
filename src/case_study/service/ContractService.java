@@ -1,4 +1,6 @@
 package case_study.service;
 
-public class ContractService implements IContractService{
+import case_study.service.iml.IContractService;
+
+public class ContractService implements IContractService {
 }

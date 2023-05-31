@@ -20,7 +20,7 @@ public class WriteAndReadFileEmployee {
             bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Lỗi Đọc File");
         }
     }
 
@@ -39,9 +39,9 @@ public class WriteAndReadFileEmployee {
                 employeeList.add(employee);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Lỗi Không Tìm Thấy File");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Lỗi Đọc File");
         }
         return employeeList;
     }

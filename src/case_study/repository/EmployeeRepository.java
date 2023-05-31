@@ -1,13 +1,15 @@
 package case_study.repository;
 
 import case_study.model.person.Employee;
+import case_study.repository.iml.IEmployeeRepository;
 import case_study.ultils.WriteAndReadFileEmployee;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository implements IEmployeeRepository {
-    private static final String PATH_EMPLOYEE = "untitled/src/case_study/data/Employee.csv";
+    private static final String PATH_EMPLOYEE = "D:\\CodeGym\\C0323G1_NguyenDucTrung\\Module 2\\untitled\\src\\case_study" +
+            "\\data\\Employee.csv";
 //   private static List<Employee> employeeList = new ArrayList<>();
 //    static {
 //        employeeList.add(new Employee("Trung","11/04/1993",201615558,1223450089,

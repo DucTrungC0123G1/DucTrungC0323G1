@@ -2,14 +2,12 @@ package case_study.service;
 
 import case_study.model.person.Employee;
 import case_study.repository.EmployeeRepository;
-import case_study.ultils.WriteAndReadFileEmployee;
+import case_study.service.iml.IEmployeeService;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeService implements IEmployeeService{
+public class EmployeeService implements IEmployeeService {
     Scanner sc = new Scanner(System.in);
     EmployeeRepository employeeRepository = new EmployeeRepository();
     @Override
@@ -36,27 +34,31 @@ public class EmployeeService implements IEmployeeService{
         String EmailEmployee = sc.nextLine();
         System.out.print("Enter IdEmployee: ");
         String idEmployee = sc.nextLine();
-        System.out.print("Enter Level Employee: \n" +
-                "1.Vocational\n" +
-                "2.College\n" +
-                "3.University\n" +
-                "4.After University\n");
-        String choiceLevel = sc.nextLine();
+        boolean flagLevel = true;
         String level = "";
-        boolean flagLevel = false;
         do {
+            System.out.print("Enter Level Employee: \n" +
+                    "1.Vocational\n" +
+                    "2.College\n" +
+                    "3.University\n" +
+                    "4.After University\n");
+            String choiceLevel = sc.nextLine();
             switch (choiceLevel){
                 case "1":
                     level = "Vocational";
+                    flagLevel= false;
                     break;
                 case "2":
                     level = "College";
+                    flagLevel= false;
                     break;
                 case "3":
                     level = "University";
+                    flagLevel= false;
                     break;
                 case "4":
                     level = "After University";
+                    flagLevel= false;
                     break;
                 default:
                     System.out.println("Choice Again");
@@ -65,35 +67,41 @@ public class EmployeeService implements IEmployeeService{
             }
         }while (flagLevel);
 
-        System.out.print("Enter Position Employee: \n" +
-                "1.Reception.\n" +
-                "2.Staff.\n" +
-                "3.Expert.\n" +
-                "4.Super Vision.\n" +
-                "5.Manager.\n" +
-                "6.Director\n");
-        String choicePosition = sc.nextLine();
-        boolean flagPosition = false;
+        boolean flagPosition = true;
         String position = "";
         do {
+            System.out.print("Enter Position Employee: \n" +
+                    "1.Reception.\n" +
+                    "2.Staff.\n" +
+                    "3.Expert.\n" +
+                    "4.Super Vision.\n" +
+                    "5.Manager.\n" +
+                    "6.Director\n");
+            String choicePosition = sc.nextLine();
             switch (choicePosition){
                 case "1":
                     position = "Reception";
+                    flagPosition=false;
                     break;
                 case "2":
                     position = "Staff";
+                    flagPosition=false;
                     break;
                 case "3":
                     position = "Expert";
+                    flagPosition=false;
                     break;
                 case "4":
                     position = "Super Vision";
+                    flagPosition=false;
                     break;
                 case "5":
                     position = "Manager";
+                    flagPosition=false;
                     break;
                 case "6":
                     position = "Direction";
+                    flagPosition=false;
                     break;
                 default:
                     System.out.println("Choice Again");
@@ -249,5 +257,6 @@ public class EmployeeService implements IEmployeeService{
             System.out.println("ID Not Found");
         }
         employeeRepository.editEmployee(idEdit,employee);
+
     }
 }
