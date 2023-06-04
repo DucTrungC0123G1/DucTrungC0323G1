@@ -108,25 +108,69 @@ public class CustomerService implements ICustomerService {
                 switch (choiceEdit){
                     case "1":
                         System.out.print("Edit Name: ");
-                        String editName = sc.nextLine();
+                        customer.setName(sc.nextLine());
                         break;
                     case "2":
                         System.out.print("Edit DateOfBirth: ");
-                        String editDate = sc.nextLine();
+                       customer.setDateOfBirth(sc.nextLine());
                         break;
                     case "3":
                         System.out.print("Edit IdentityCard: ");
-                        Double editIdentity = Double.parseDouble(sc.nextLine());
+                        customer.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
                         break;
                     case "4":
                         System.out.print("Edit Telephone: ");
-                        Double editTelephone = Double.parseDouble(sc.nextLine());
+                        customer.setTelephone(Double.parseDouble(sc.nextLine()));
                         break;
                     case "5":
+                        System.out.print("Edit Email: ");
+                        customer.setEmail(sc.nextLine());
                         break;
                     case "6":
+                        boolean flagType = true;
+                        do {
+                            System.out.println("Edit Type Customer: \n" +
+                                "1.Diamond\n" +
+                                "2.Platinum\n" +
+                                "3.Gold\n" +
+                                "4.Silver\n" +
+                                "5.Member\n" +
+                                    "0.Return");
+                            String choiceType = sc.nextLine();
+                            switch (choiceType){
+                                case "1":
+                                    customer.setTypeCustomer("Diamond");
+                                    flagType = false;
+                                    break;
+                                case "2":
+                                    customer.setTypeCustomer("Platinum");
+                                    flagType = false;
+                                    break;
+                                case "3":
+                                    customer.setTypeCustomer("Gold");
+                                    flagType = false;
+                                    break;
+                                case "4":
+                                    customer.setTypeCustomer("Silver");
+                                    flagType = false;
+                                    break;
+                                case "5":
+                                    customer.setTypeCustomer("Member");
+                                    flagType = false;
+                                    break;
+                                case "0":
+                                    flagType=false;
+                                    break;
+                                default:
+                                    System.out.println("Choice Again");
+                                    flagType = true;
+                                    break;
+                            }
+                        }while (flagType);
                         break;
                     case "7":
+                        System.out.print("Edit Address");
+                        customer.setAddress(sc.nextLine());
                         break;
                     case "0":
                         break;
@@ -135,8 +179,10 @@ public class CustomerService implements ICustomerService {
                         flagEdit = true;
                         break;
                 }
-
             }while (flagEdit);
+        }else {
+            System.err.println("ID Not Found");
         }
+        customerRepository.editCustomer(idEditCustomer,customer);
     }
 }

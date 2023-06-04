@@ -10,4 +10,6 @@ public interface ICustomerRepository {
     void addCustomer(Customer customer);
 
     Customer getById(String id);
+
+    void editCustomer(String id, Customer customer);
 }

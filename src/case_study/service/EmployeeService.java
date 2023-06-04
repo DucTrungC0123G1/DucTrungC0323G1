@@ -3,6 +3,7 @@ package case_study.service;
 import case_study.model.person.Employee;
 import case_study.repository.EmployeeRepository;
 import case_study.service.iml.IEmployeeService;
+import case_study.ultils.ValidateRegex;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,20 +11,25 @@ import java.util.Scanner;
 public class EmployeeService implements IEmployeeService {
     Scanner sc = new Scanner(System.in);
     EmployeeRepository employeeRepository = new EmployeeRepository();
+
     @Override
     public void displayEmployee() {
-        List<Employee>employeeList = employeeRepository.getAll();
-        for (Employee employee :employeeList) {
+        List<Employee> employeeList = employeeRepository.getAll();
+        for (Employee employee : employeeList) {
             System.out.println(employee);
         }
     }
-//String name, String dateOfBirth, double identityCarNumber, double telephone, String email,
+
+    //String name, String dateOfBirth, double identityCarNumber, double telephone, String email,
 //                    String idEmployee, String levelEmployee, String position, double salary
     @Override
     public void addEmployee() {
         employeeRepository.getAll();
-        System.out.print("Enter Name Employee: ");
-        String nameEmployee = sc.nextLine();
+        String nameEmployee;
+        do {
+            System.out.print("Enter Name Employee: ");
+            nameEmployee = sc.nextLine();
+        } while (!ValidateRegex.checkName(nameEmployee));
         System.out.print("Enter DateOfBirth Employee: ");
         String dateOfBirthEmployee = sc.nextLine();
         System.out.print("Enter IdentityCardNumber Employee: ");
@@ -43,29 +49,29 @@ public class EmployeeService implements IEmployeeService {
                     "3.University\n" +
                     "4.After University\n");
             String choiceLevel = sc.nextLine();
-            switch (choiceLevel){
+            switch (choiceLevel) {
                 case "1":
                     level = "Vocational";
-                    flagLevel= false;
+                    flagLevel = false;
                     break;
                 case "2":
                     level = "College";
-                    flagLevel= false;
+                    flagLevel = false;
                     break;
                 case "3":
                     level = "University";
-                    flagLevel= false;
+                    flagLevel = false;
                     break;
                 case "4":
                     level = "After University";
-                    flagLevel= false;
+                    flagLevel = false;
                     break;
                 default:
                     System.out.println("Choice Again");
                     flagLevel = true;
                     break;
             }
-        }while (flagLevel);
+        } while (flagLevel);
 
         boolean flagPosition = true;
         String position = "";
@@ -78,42 +84,42 @@ public class EmployeeService implements IEmployeeService {
                     "5.Manager.\n" +
                     "6.Director\n");
             String choicePosition = sc.nextLine();
-            switch (choicePosition){
+            switch (choicePosition) {
                 case "1":
                     position = "Reception";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 case "2":
                     position = "Staff";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 case "3":
                     position = "Expert";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 case "4":
                     position = "Super Vision";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 case "5":
                     position = "Manager";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 case "6":
                     position = "Direction";
-                    flagPosition=false;
+                    flagPosition = false;
                     break;
                 default:
                     System.out.println("Choice Again");
                     flagPosition = true;
                     break;
             }
-        }while (flagPosition);
+        } while (flagPosition);
 
         System.out.print("Enter Salary Employee: ");
         Double salaryEmployee = Double.parseDouble(sc.nextLine());
-        Employee employee = new Employee(nameEmployee,dateOfBirthEmployee,identityCardEmployee,
-                telephoneEmployee,EmailEmployee,idEmployee,level,position,salaryEmployee);
+        Employee employee = new Employee(nameEmployee, dateOfBirthEmployee, identityCardEmployee,
+                telephoneEmployee, EmailEmployee, idEmployee, level, position, salaryEmployee);
         employeeRepository.addNewEmployee(employee);
         System.out.println("ADD EMPLOYEE SUCCESS");
     }
@@ -124,7 +130,7 @@ public class EmployeeService implements IEmployeeService {
         System.out.println("Enter ID EMPLOYEE TO EDIT");
         String idEdit = sc.nextLine();
         Employee employee = employeeRepository.getById(idEdit);
-        if (employee!=null){
+        if (employee != null) {
             boolean flagEdit = false;
             do {
                 System.out.println("Enter Function To Edit\n" +
@@ -141,7 +147,9 @@ public class EmployeeService implements IEmployeeService {
                 String choiceEdit = sc.nextLine();
                 switch (choiceEdit) {
                     case "1":
+
                         System.out.print("Edit Name: ");
+                        String name = sc.nextLine();
                         employee.setName(sc.nextLine());
                         break;
                     case "2":
@@ -150,7 +158,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "3":
                         System.out.print("Edit IdentityCardNumber: ");
-                       employee.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
+                        employee.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
                         break;
                     case "4":
                         System.out.print("Edit Telephone: ");
@@ -166,7 +174,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "7":
                         System.out.print("Edit Employee Level: ");
-                        boolean flagEditLv = false;
+                        boolean flagEditLv = true;
                         do {
                             System.out.println("Choice Edit Level: \n" +
                                     "1.Vocational\n" +
@@ -178,15 +186,19 @@ public class EmployeeService implements IEmployeeService {
                             switch (choiceEditLv) {
                                 case "1":
                                     employee.setLevelEmployee("Vocational");
+                                    flagEditLv = false;
                                     break;
                                 case "2":
                                     employee.setLevelEmployee("College");
+                                    flagEditLv = false;
                                     break;
                                 case "3":
                                     employee.setLevelEmployee("University");
+                                    flagEditLv = false;
                                     break;
                                 case "4":
                                     employee.setLevelEmployee("After University");
+                                    flagEditLv = false;
                                     break;
                                 case "0":
                                     flagEditLv = false;
@@ -200,7 +212,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "8":
                         System.out.print("Edit Employee Position: ");
-                        boolean flagEditPosition = false;
+                        boolean flagEditPosition = true;
                         do {
                             System.out.println("Choice Edit Position\n" +
                                     "1.Reception.\n" +
@@ -213,22 +225,28 @@ public class EmployeeService implements IEmployeeService {
                             String choiceEditPosition = sc.nextLine();
                             switch (choiceEditPosition) {
                                 case "1":
-                                    employee.setLevelEmployee("Reception");
+                                    employee.setPosition("Reception");
+                                    flagEditPosition = false;
                                     break;
                                 case "2":
-                                    employee.setLevelEmployee("Staff");
+                                    employee.setPosition("Staff");
+                                    flagEditPosition = false;
                                     break;
                                 case "3":
-                                    employee.setLevelEmployee("Expert");
+                                    employee.setPosition("Expert");
+                                    flagEditPosition = false;
                                     break;
                                 case "4":
-                                    employee.setLevelEmployee("Super Vision");
+                                    employee.setPosition("Super Vision");
+                                    flagEditPosition = false;
                                     break;
                                 case "5":
-                                   employee.setLevelEmployee("Manager");
+                                    employee.setPosition("Manager");
+                                    flagEditPosition = false;
                                     break;
                                 case "6":
-                                    employee.setLevelEmployee("Director");
+                                    employee.setPosition("Director");
+                                    flagEditPosition = false;
                                     break;
                                 case "0":
                                     flagEditPosition = false;
@@ -252,11 +270,11 @@ public class EmployeeService implements IEmployeeService {
                         flagEdit = true;
                         break;
                 }
-            }while (flagEdit);
-        }else {
+            } while (flagEdit);
+        } else {
             System.out.println("ID Not Found");
         }
-        employeeRepository.editEmployee(idEdit,employee);
+        employeeRepository.editEmployee(idEdit, employee);
 
     }
 }

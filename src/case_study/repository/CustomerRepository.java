@@ -29,20 +29,36 @@ public class CustomerRepository implements ICustomerRepository {
     @Override
     public void addCustomer(Customer customer) {
         List<String> stringList = new ArrayList<>();
-        stringList.add(customer.getName() + "," + customer.getDateOfBirth() + "," + customer.getIdentityCarNumber() + "," + customer.getTelephone() +
-                "," + customer.getEmail() + "," + customer.getIdCustomer() + "," + customer.getTypeCustomer() + "," + customer.getAddress());
+        stringList.add(customer.getName() + "," + customer.getDateOfBirth() + "," + customer.getIdentityCarNumber() + ","
+                + customer.getTelephone() + "," + customer.getEmail() + "," + customer.getIdCustomer() + "," +
+                customer.getTypeCustomer() + "," + customer.getAddress());
         WriteAndRead.writeFile(stringList, PATH_CUSTOMER, true);
     }
 
     @Override
     public Customer getById(String id) {
         customerList = getAll();
-        for (Customer c :
-                customerList) {
+        for (Customer c : customerList) {
             if (c.getIdCustomer().equals(id)) {
                 return c;
             }
         }
         return null;
+    }
+
+    @Override
+    public void editCustomer(String id, Customer customer) {
+        customerList = getAll();
+        List<String> stringList = WriteAndRead.readFile(PATH_CUSTOMER);
+        String[] temp;
+        for (int i = 0; i < stringList.size(); i++) {
+            temp = stringList.get(i).split(",");
+            if (temp[5].equals(id)) {
+                stringList.set(i,customer.getName() + "," + customer.getDateOfBirth() + "," + customer.getIdentityCarNumber() + ","
+                        + customer.getTelephone() + "," + customer.getEmail() + "," + customer.getIdCustomer() + "," +
+                        customer.getTypeCustomer() + "," + customer.getAddress());
+            }
+        }
+        WriteAndRead.writeFile(stringList, PATH_CUSTOMER,false);
     }
 }
