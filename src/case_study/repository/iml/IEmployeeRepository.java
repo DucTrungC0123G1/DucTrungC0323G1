@@ -12,4 +12,8 @@ public interface IEmployeeRepository {
     Employee getById(String id);
 
     void editEmployee(String id, Employee employee);
+
+    void nameSearch(String name);
+
+    void removeEmployee(Employee employee);
 }

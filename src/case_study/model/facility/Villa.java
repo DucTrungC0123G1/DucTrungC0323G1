@@ -5,7 +5,7 @@ public class Villa extends FacilityModel{
     double swimArea;
     int numberFloor;
 
-    public Villa(String idService, String nameService, double area, double rentalCosts, int maxPeople, String typeRent,
+    public Villa(String idService, String nameService, float area, float rentalCosts, int maxPeople, String typeRent,
                  String villaStandard, double swimArea, int numberFloor) {
         super(idService, nameService, area, rentalCosts, maxPeople, typeRent);
         this.villaStandard = villaStandard;

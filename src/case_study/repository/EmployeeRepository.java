@@ -49,4 +49,25 @@ public class EmployeeRepository implements IEmployeeRepository {
             }
         }
     }
+
+    @Override
+    public void nameSearch(String name) {
+        List<Employee> employeeList = WriteAndReadFileEmployee.readFileEmployee(PATH_EMPLOYEE);
+        boolean flagSearch = true;
+        for (int i = 0; i <employeeList.size() ; i++) {
+            if (employeeList.get(i).getName().contains(name)){
+                System.out.println(employeeList.get(i));
+                flagSearch = false;
+            }
+        }if (flagSearch){
+            System.out.println("Name Not Found");
+        }
+    }
+
+    @Override
+    public void removeEmployee(Employee employee) {
+        List<Employee> employeeList = WriteAndReadFileEmployee.readFileEmployee(PATH_EMPLOYEE);
+        employeeList.remove(employee);
+        WriteAndReadFileEmployee.writeFileEmployee(employeeList,PATH_EMPLOYEE);
+    }
 }

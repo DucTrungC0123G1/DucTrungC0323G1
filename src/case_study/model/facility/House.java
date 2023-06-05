@@ -4,7 +4,7 @@ public class House extends FacilityModel{
     String houseStandard;
     int numberFloor;
 
-    public House(String idService, String nameService, double area, double rentalCosts, int maxPeople, String typeRent,
+    public House(String idService, String nameService, float area, float rentalCosts, int maxPeople, String typeRent,
                  String houseStandard, int numberFloor) {
         super(idService, nameService, area, rentalCosts, maxPeople, typeRent);
         this.houseStandard = houseStandard;

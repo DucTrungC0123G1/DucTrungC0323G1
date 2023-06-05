@@ -3,15 +3,15 @@ package case_study.model.facility;
 public abstract class FacilityModel {
     String idService;
     String nameService;
-    double area;
-    double rentalCosts;
+    float area;
+    float rentalCosts;
     int maxPeople;
     String typeRent;
 
     public FacilityModel() {
     }
 
-    public FacilityModel(String idService, String nameService, double area, double rentalCosts, int maxPeople,
+    public FacilityModel(String idService, String nameService, float area, float rentalCosts, int maxPeople,
                          String typeRent) {
         this.idService = idService;
         this.nameService = nameService;
@@ -37,19 +37,19 @@ public abstract class FacilityModel {
         this.nameService = nameService;
     }
 
-    public double getArea() {
+    public float getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(float area) {
         this.area = area;
     }
 
-    public double getRentalCosts() {
+    public float getRentalCosts() {
         return rentalCosts;
     }
 
-    public void setRentalCosts(double rentalCosts) {
+    public void setRentalCosts(float rentalCosts) {
         this.rentalCosts = rentalCosts;
     }
 

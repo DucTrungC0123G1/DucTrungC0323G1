@@ -3,7 +3,7 @@ package case_study.model.facility;
 public class Room extends FacilityModel{
     String serviceFree;
 
-    public Room(String idService, String nameService, double area, double rentalCosts, int maxPeople, String typeRent, String serviceFree) {
+    public Room(String idService, String nameService, float area, float rentalCosts, int maxPeople, String typeRent, String serviceFree) {
 
         super(idService, nameService, area, rentalCosts, maxPeople, typeRent);
         this.serviceFree = serviceFree;

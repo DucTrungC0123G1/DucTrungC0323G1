@@ -54,11 +54,39 @@ public class CustomerRepository implements ICustomerRepository {
         for (int i = 0; i < stringList.size(); i++) {
             temp = stringList.get(i).split(",");
             if (temp[5].equals(id)) {
-                stringList.set(i,customer.getName() + "," + customer.getDateOfBirth() + "," + customer.getIdentityCarNumber() + ","
+                stringList.set(i, customer.getName() + "," + customer.getDateOfBirth() + "," + customer.getIdentityCarNumber() + ","
                         + customer.getTelephone() + "," + customer.getEmail() + "," + customer.getIdCustomer() + "," +
                         customer.getTypeCustomer() + "," + customer.getAddress());
             }
         }
-        WriteAndRead.writeFile(stringList, PATH_CUSTOMER,false);
+        WriteAndRead.writeFile(stringList, PATH_CUSTOMER, true);
+    }
+
+    @Override
+    public void removeCustomer(Customer customer) {
+        customerList = getAll();
+        customerList.remove(customer);
+        List<String> stringList = new ArrayList<>();
+        for (Customer temp :
+                customerList) {
+            stringList.add(temp.getName() + "," + temp.getDateOfBirth() + "," + temp.getIdentityCarNumber() + "," + temp.getTelephone() +
+                    "," + temp.getEmail() + "," + temp.getIdCustomer() + "," + temp.getTypeCustomer() + "," + temp.getAddress());
+        }
+        WriteAndRead.writeFile(stringList, PATH_CUSTOMER, false);
+    }
+
+    @Override
+    public List<Customer> getByName(String name) {
+        List<Customer> customers = new ArrayList<>();
+        customerList = getAll();
+        for (Customer c : customerList) {
+            if (c.getName().toLowerCase().contains(name.toLowerCase())) {
+                customers.add(c);
+            }
+        }
+        if (customers.size() == 0) {
+            return null;
+        }
+        return customers;
     }
 }

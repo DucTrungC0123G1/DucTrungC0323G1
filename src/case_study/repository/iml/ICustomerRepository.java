@@ -12,4 +12,8 @@ public interface ICustomerRepository {
     Customer getById(String id);
 
     void editCustomer(String id, Customer customer);
+
+    void removeCustomer(Customer customer);
+
+    List<Customer> getByName(String name);
 }

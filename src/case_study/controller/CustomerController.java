@@ -15,7 +15,9 @@ public class CustomerController {
                     "1. Display list customer\n" +
                     "2. Add new customer\n" +
                     "3. Edit customer\n" +
-                    "4. Return main menu\n");
+                    "4. Delete Customer\n" +
+                    "5.Search Customer\n" +
+                    "6.Return main menu");
             String choice = sc.nextLine();
             switch (choice){
                 case "1":
@@ -28,6 +30,12 @@ public class CustomerController {
                     customerService.editCustomer();
                     break;
                 case "4":
+                   customerService.deleteCustomer();
+                    break;
+                case "5":
+                    customerService.searchCustomer();
+                    break;
+                case "6":
                     flagCustomer = false;
                     break;
                 default:

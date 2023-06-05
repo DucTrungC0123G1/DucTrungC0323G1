@@ -1,5 +1,7 @@
 package case_study.model.person;
 
+import java.util.Objects;
+
 public class Employee extends Person{
     String idEmployee;
     String levelEmployee;
@@ -45,6 +47,19 @@ public class Employee extends Person{
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return idEmployee.equals(employee.idEmployee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEmployee);
     }
 
     @Override

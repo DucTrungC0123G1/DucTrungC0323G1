@@ -89,7 +89,7 @@ public class ServiceSpending implements IServiceSpending {
                     throw new IdNotFoundException("Mã Không Tồn Tại");
                 }
             } catch (IdNotFoundException idNotFoundException) {
-                System.out.println(idNotFoundException.getMessage());
+                System.err.println("Không Tìm Thấy File");
                 flagDel=true;
             }
         } while (flagDel);

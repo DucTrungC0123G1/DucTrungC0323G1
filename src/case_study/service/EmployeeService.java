@@ -25,21 +25,26 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public void addEmployee() {
         employeeRepository.getAll();
-        String nameEmployee;
-        do {
-            System.out.print("Enter Name Employee: ");
-            nameEmployee = sc.nextLine();
-        } while (!ValidateRegex.checkName(nameEmployee));
-        System.out.print("Enter DateOfBirth Employee: ");
-        String dateOfBirthEmployee = sc.nextLine();
-        System.out.print("Enter IdentityCardNumber Employee: ");
-        Double identityCardEmployee = Double.parseDouble(sc.nextLine());
-        System.out.print("Enter Telephone Employee: ");
-        Double telephoneEmployee = Double.parseDouble(sc.nextLine());
-        System.out.print("Enter Email Employee: ");
-        String EmailEmployee = sc.nextLine();
-        System.out.print("Enter IdEmployee: ");
-        String idEmployee = sc.nextLine();
+
+//        System.out.print("Enter Name Employee: ");
+        String nameEmployee = ValidateRegex.checkName();
+
+//        System.out.print("Enter DateOfBirth Employee: ");
+        String dateOfBirthEmployee = ValidateRegex.checkBirthday();
+
+//        System.out.print("Enter IdentityCardNumber Employee: ");
+        String identityCardEmployee = ValidateRegex.checkIdentityCard();
+        Double identityCard1 = Double.parseDouble(identityCardEmployee);
+
+//        System.out.print("Enter Telephone Employee: ");
+        String telephoneEmployee = ValidateRegex.checkPhoneNumber();
+        Double telephone1 = Double.parseDouble(telephoneEmployee);
+
+//        System.out.print("Enter Email Employee: ");
+        String EmailEmployee = ValidateRegex.checkEmail();
+
+//        System.out.print("Enter IdEmployee: ");
+        String idEmployee = ValidateRegex.checkIdEmployee();
         boolean flagLevel = true;
         String level = "";
         do {
@@ -117,9 +122,10 @@ public class EmployeeService implements IEmployeeService {
         } while (flagPosition);
 
         System.out.print("Enter Salary Employee: ");
-        Double salaryEmployee = Double.parseDouble(sc.nextLine());
-        Employee employee = new Employee(nameEmployee, dateOfBirthEmployee, identityCardEmployee,
-                telephoneEmployee, EmailEmployee, idEmployee, level, position, salaryEmployee);
+        String salaryEmployee = ValidateRegex.checkSalary();
+        Double salary1 = Double.parseDouble(salaryEmployee);
+        Employee employee = new Employee(nameEmployee, dateOfBirthEmployee, identityCard1,
+                telephone1, EmailEmployee, idEmployee, level, position, salary1);
         employeeRepository.addNewEmployee(employee);
         System.out.println("ADD EMPLOYEE SUCCESS");
     }
@@ -128,7 +134,7 @@ public class EmployeeService implements IEmployeeService {
     public void editEmployee() {
         displayEmployee();
         System.out.println("Enter ID EMPLOYEE TO EDIT");
-        String idEdit = sc.nextLine();
+        String idEdit = ValidateRegex.checkIdEmployee();
         Employee employee = employeeRepository.getById(idEdit);
         if (employee != null) {
             boolean flagEdit = false;
@@ -147,30 +153,29 @@ public class EmployeeService implements IEmployeeService {
                 String choiceEdit = sc.nextLine();
                 switch (choiceEdit) {
                     case "1":
-
                         System.out.print("Edit Name: ");
                         String name = sc.nextLine();
-                        employee.setName(sc.nextLine());
+                        employee.setName(ValidateRegex.checkName());
                         break;
                     case "2":
                         System.out.print("Edit DateOfBirth: ");
-                        employee.setDateOfBirth(sc.nextLine());
+                        employee.setDateOfBirth(ValidateRegex.checkBirthday());
                         break;
                     case "3":
                         System.out.print("Edit IdentityCardNumber: ");
-                        employee.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
+                        employee.setIdentityCarNumber(Double.parseDouble(ValidateRegex.checkIdentityCard()));
                         break;
                     case "4":
                         System.out.print("Edit Telephone: ");
-                        employee.setTelephone(Double.parseDouble(sc.nextLine()));
+                        employee.setTelephone(Double.parseDouble(ValidateRegex.checkPhoneNumber()));
                         break;
                     case "5":
                         System.out.print("Edit Email: ");
-                        employee.setEmail(sc.nextLine());
+                        employee.setEmail(ValidateRegex.checkEmail());
                         break;
                     case "6":
                         System.out.print("Edit IdEmployee: ");
-                        employee.setIdEmployee(sc.nextLine());
+                        employee.setIdEmployee(ValidateRegex.checkIdEmployee());
                         break;
                     case "7":
                         System.out.print("Edit Employee Level: ");
@@ -260,7 +265,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                     case "9":
                         System.out.print("Edit Salary: ");
-                        employee.setSalary(Double.parseDouble(sc.nextLine()));
+                        employee.setSalary(Double.parseDouble(ValidateRegex.checkSalary()));
                         break;
                     case "0":
                         flagEdit = false;
@@ -277,4 +282,34 @@ public class EmployeeService implements IEmployeeService {
         employeeRepository.editEmployee(idEdit, employee);
 
     }
+
+    @Override
+    public void searchEmployee() {
+        System.out.println("Enter Name Employee To Search");
+        String nameSearch = sc.nextLine();
+        employeeRepository.nameSearch(nameSearch);
+
+    }
+
+    @Override
+    public void deleteEmployee() {
+        employeeRepository.getAll();
+        displayEmployee();
+        System.out.println("Enter ID To Delete");
+        String idDel = sc.nextLine();
+        Employee employee = employeeRepository.getById(idDel);
+        if (employee != null) {
+            System.out.println("You Want Delete: " + employee + "--" + employee.getName());
+            System.out.println("1.Yes\n" +
+                    "2.No");
+            int choice = Integer.parseInt(sc.nextLine());
+            if (choice == 1) {
+                employeeRepository.removeEmployee(employee);
+                System.out.println("Delete Success");
+            }
+        } else {
+            System.out.println("ID Not Found");
+        }
+    }
 }
+

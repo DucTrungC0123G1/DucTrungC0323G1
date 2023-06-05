@@ -4,6 +4,7 @@ import case_study.model.person.Customer;
 import case_study.repository.CustomerRepository;
 import case_study.repository.iml.ICustomerRepository;
 import case_study.service.iml.ICustomerService;
+import case_study.ultils.ValidateRegex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +29,17 @@ public class CustomerService implements ICustomerService {
     public void addCustomer() {
         customerRepository.getAll();
         System.out.print("Enter Name Customer: ");
-        String nameCustomer = sc.nextLine();
+        String nameCustomer = ValidateRegex.checkName();
         System.out.print("Enter DateOfBirth Customer: ");
-        String dateCustomer = sc.nextLine();
+        String dateCustomer = ValidateRegex.checkBirthday();
         System.out.print("Enter IndentityCardNumber: ");
-        Double identityCardNumber = Double.parseDouble(sc.nextLine());
+        Double identityCardNumber = Double.parseDouble(ValidateRegex.checkIdentityCard());
         System.out.print("Enter Telephone Customer: ");
-        Double telephoneCustomer = Double.parseDouble(sc.nextLine());
+        Double telephoneCustomer = Double.parseDouble(ValidateRegex.checkPhoneNumber());
         System.out.print("Enter Email Customer: ");
-        String emailCustomer = sc.nextLine();
+        String emailCustomer = ValidateRegex.checkEmail();
         System.out.print("Enter ID Customer: ");
-        String idCustomer = sc.nextLine();
+        String idCustomer = ValidateRegex.checkIdCustomer();
         boolean flagType = true;
         String typeCustomer = "";
         do {
@@ -90,7 +91,7 @@ public class CustomerService implements ICustomerService {
     public void editCustomer() {
         displayCustomer();
         System.out.print("Enter ID Customer To Edit: ");
-        String idEditCustomer = sc.nextLine();
+        String idEditCustomer = ValidateRegex.checkIdCustomer();
         Customer customer = customerRepository.getById(idEditCustomer);
         if (customer!=null){
             boolean flagEdit = false;
@@ -108,23 +109,23 @@ public class CustomerService implements ICustomerService {
                 switch (choiceEdit){
                     case "1":
                         System.out.print("Edit Name: ");
-                        customer.setName(sc.nextLine());
+                        customer.setName(ValidateRegex.checkName());
                         break;
                     case "2":
                         System.out.print("Edit DateOfBirth: ");
-                       customer.setDateOfBirth(sc.nextLine());
+                       customer.setDateOfBirth(ValidateRegex.checkBirthday());
                         break;
                     case "3":
                         System.out.print("Edit IdentityCard: ");
-                        customer.setIdentityCarNumber(Double.parseDouble(sc.nextLine()));
+                        customer.setIdentityCarNumber(Double.parseDouble(ValidateRegex.checkIdentityCard()));
                         break;
                     case "4":
                         System.out.print("Edit Telephone: ");
-                        customer.setTelephone(Double.parseDouble(sc.nextLine()));
+                        customer.setTelephone(Double.parseDouble(ValidateRegex.checkPhoneNumber()));
                         break;
                     case "5":
                         System.out.print("Edit Email: ");
-                        customer.setEmail(sc.nextLine());
+                        customer.setEmail(ValidateRegex.checkEmail());
                         break;
                     case "6":
                         boolean flagType = true;
@@ -184,5 +185,43 @@ public class CustomerService implements ICustomerService {
             System.err.println("ID Not Found");
         }
         customerRepository.editCustomer(idEditCustomer,customer);
+    }
+
+    @Override
+    public void deleteCustomer() {
+        displayCustomer();
+        System.out.println("Enter ID Customer To Delete");
+        String idDel = sc.nextLine();
+        Customer customer = customerRepository.getById(idDel);
+        if (customer!= null){
+            System.out.println("Do You Want Delete: "+customer+ "--"+ customer.getName());
+            System.out.println("1.Yes\n" +
+                    "2.No");
+            int choice = Integer.parseInt(sc.nextLine());
+            if (choice ==1){
+                customerRepository.removeCustomer(customer);
+                System.out.println("Delete Success");
+            }
+        }else {
+            System.out.println("ID Not Found");
+        }
+    }
+
+    @Override
+    public void searchCustomer() {
+    while (true){
+        System.out.println("Enter Customer Name");
+        String nameSearch = sc.nextLine();
+        List<Customer> customerList = customerRepository.getByName(nameSearch);
+        if (customerList == null){
+            System.out.println("Name Not Found");
+        }else{
+            for (Customer c :
+                    customerList) {
+                System.out.println(c);
+            }
+            break;
+        }
+    }
     }
 }

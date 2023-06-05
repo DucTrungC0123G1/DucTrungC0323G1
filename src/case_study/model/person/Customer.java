@@ -1,5 +1,7 @@
 package case_study.model.person;
 
+import java.util.Objects;
+
 public class Customer extends Person{
     String idCustomer;
     String typeCustomer;
@@ -35,6 +37,19 @@ public class Customer extends Person{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return idCustomer.equals(customer.idCustomer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCustomer);
     }
 
     @Override

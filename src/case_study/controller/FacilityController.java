@@ -1,9 +1,13 @@
 package case_study.controller;
 
+import case_study.service.FacilityService;
+import case_study.service.iml.IFacilityService;
+
 import java.util.Scanner;
 
 public class FacilityController {
     public void displayFacilityMenu(){
+        IFacilityService facilityService = new FacilityService();
         Scanner sc = new Scanner(System.in);
         boolean flagFacility = true;
         do {
@@ -15,6 +19,7 @@ public class FacilityController {
             String choice = sc.nextLine();
             switch (choice){
                 case "1":
+                    facilityService.displayFacility();
                     break;
                 case "2":
                     break;

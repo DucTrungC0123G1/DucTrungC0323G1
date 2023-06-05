@@ -15,7 +15,9 @@ public class EmployeeController {
                     "1. Display list employees\n" +
                     "2. Add new employee\n" +
                     "3. Edit employee\n" +
-                    "4. Return main menu\n");
+                    "4. Search By Name\n" +
+                    "5. Delete\n" +
+                    "6. Return Main Menu");
             String choice = sc.nextLine();
             switch (choice){
                 case "1":
@@ -28,6 +30,12 @@ public class EmployeeController {
                     employeeService.editEmployee();
                     break;
                 case "4":
+                    employeeService.searchEmployee();
+                    break;
+                case "5":
+                    employeeService.deleteEmployee();
+                    break;
+                case "6":
                     flagEmployee = false;
                     break;
                 default:
