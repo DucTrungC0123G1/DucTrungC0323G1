@@ -22,6 +22,7 @@ public class FacilityController {
                     facilityService.displayFacility();
                     break;
                 case "2":
+                    facilityService.addFacility();
                     break;
                 case "3":
                     break;

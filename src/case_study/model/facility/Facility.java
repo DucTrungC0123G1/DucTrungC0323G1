@@ -1,6 +1,6 @@
 package case_study.model.facility;
 
-public abstract class FacilityModel {
+public abstract class Facility {
     String idService;
     String nameService;
     float area;
@@ -8,11 +8,11 @@ public abstract class FacilityModel {
     int maxPeople;
     String typeRent;
 
-    public FacilityModel() {
+    public Facility() {
     }
 
-    public FacilityModel(String idService, String nameService, float area, float rentalCosts, int maxPeople,
-                         String typeRent) {
+    public Facility(String idService, String nameService, float area, float rentalCosts, int maxPeople,
+                    String typeRent) {
         this.idService = idService;
         this.nameService = nameService;
         this.area = area;

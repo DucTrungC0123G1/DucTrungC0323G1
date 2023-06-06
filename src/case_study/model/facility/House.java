@@ -1,6 +1,6 @@
 package case_study.model.facility;
 
-public class House extends FacilityModel{
+public class House extends Facility {
     String houseStandard;
     int numberFloor;
 

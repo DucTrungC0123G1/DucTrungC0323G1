@@ -53,23 +53,23 @@ public class CustomerService implements ICustomerService {
             switch (choiceType) {
                 case "1":
                     typeCustomer = "Diamond";
-                    flagType= false;
+                    flagType = false;
                     break;
                 case "2":
                     typeCustomer = "Platinum";
-                    flagType= false;
+                    flagType = false;
                     break;
                 case "3":
                     typeCustomer = "Gold";
-                    flagType= false;
+                    flagType = false;
                     break;
                 case "4":
                     typeCustomer = "Silver";
-                    flagType= false;
+                    flagType = false;
                     break;
                 case "5":
                     typeCustomer = "Member";
-                    flagType= false;
+                    flagType = false;
                     break;
                 default:
                     System.out.println("Choice Again");
@@ -77,11 +77,11 @@ public class CustomerService implements ICustomerService {
                     break;
             }
 
-        }while (flagType);
+        } while (flagType);
         System.out.print("Enter Address Customer: ");
         String addressCustomer = sc.nextLine();
-        Customer customer = new Customer(nameCustomer,dateCustomer,identityCardNumber,telephoneCustomer,emailCustomer,
-                idCustomer,typeCustomer,addressCustomer);
+        Customer customer = new Customer(nameCustomer, dateCustomer, identityCardNumber, telephoneCustomer, emailCustomer,
+                idCustomer, typeCustomer, addressCustomer);
         customerRepository.addCustomer(customer);
         System.out.println("Add New Success");
 
@@ -93,7 +93,7 @@ public class CustomerService implements ICustomerService {
         System.out.print("Enter ID Customer To Edit: ");
         String idEditCustomer = ValidateRegex.checkIdCustomer();
         Customer customer = customerRepository.getById(idEditCustomer);
-        if (customer!=null){
+        if (customer != null) {
             boolean flagEdit = false;
             do {
                 System.out.println("Enter Function To Edit\n" +
@@ -105,15 +105,15 @@ public class CustomerService implements ICustomerService {
                         "6. Type Customer\n" +
                         "7. Address\n" +
                         "0. Return Menu\n");
-                String choiceEdit = sc .nextLine();
-                switch (choiceEdit){
+                String choiceEdit = sc.nextLine();
+                switch (choiceEdit) {
                     case "1":
                         System.out.print("Edit Name: ");
                         customer.setName(ValidateRegex.checkName());
                         break;
                     case "2":
                         System.out.print("Edit DateOfBirth: ");
-                       customer.setDateOfBirth(ValidateRegex.checkBirthday());
+                        customer.setDateOfBirth(ValidateRegex.checkBirthday());
                         break;
                     case "3":
                         System.out.print("Edit IdentityCard: ");
@@ -131,14 +131,14 @@ public class CustomerService implements ICustomerService {
                         boolean flagType = true;
                         do {
                             System.out.println("Edit Type Customer: \n" +
-                                "1.Diamond\n" +
-                                "2.Platinum\n" +
-                                "3.Gold\n" +
-                                "4.Silver\n" +
-                                "5.Member\n" +
+                                    "1.Diamond\n" +
+                                    "2.Platinum\n" +
+                                    "3.Gold\n" +
+                                    "4.Silver\n" +
+                                    "5.Member\n" +
                                     "0.Return");
                             String choiceType = sc.nextLine();
-                            switch (choiceType){
+                            switch (choiceType) {
                                 case "1":
                                     customer.setTypeCustomer("Diamond");
                                     flagType = false;
@@ -160,14 +160,14 @@ public class CustomerService implements ICustomerService {
                                     flagType = false;
                                     break;
                                 case "0":
-                                    flagType=false;
+                                    flagType = false;
                                     break;
                                 default:
                                     System.out.println("Choice Again");
                                     flagType = true;
                                     break;
                             }
-                        }while (flagType);
+                        } while (flagType);
                         break;
                     case "7":
                         System.out.print("Edit Address");
@@ -180,11 +180,11 @@ public class CustomerService implements ICustomerService {
                         flagEdit = true;
                         break;
                 }
-            }while (flagEdit);
-        }else {
+            } while (flagEdit);
+        } else {
             System.err.println("ID Not Found");
         }
-        customerRepository.editCustomer(idEditCustomer,customer);
+        customerRepository.editCustomer(idEditCustomer, customer);
     }
 
     @Override
@@ -193,35 +193,34 @@ public class CustomerService implements ICustomerService {
         System.out.println("Enter ID Customer To Delete");
         String idDel = sc.nextLine();
         Customer customer = customerRepository.getById(idDel);
-        if (customer!= null){
-            System.out.println("Do You Want Delete: "+customer+ "--"+ customer.getName());
+        if (customer != null) {
+            System.out.println("Do You Want Delete: " + customer + "--" + customer.getName());
             System.out.println("1.Yes\n" +
                     "2.No");
             int choice = Integer.parseInt(sc.nextLine());
-            if (choice ==1){
+            if (choice == 1) {
                 customerRepository.removeCustomer(customer);
                 System.out.println("Delete Success");
             }
-        }else {
+        } else {
             System.out.println("ID Not Found");
         }
     }
 
     @Override
     public void searchCustomer() {
-    while (true){
-        System.out.println("Enter Customer Name");
-        String nameSearch = sc.nextLine();
-        List<Customer> customerList = customerRepository.getByName(nameSearch);
-        if (customerList == null){
-            System.out.println("Name Not Found");
-        }else{
-            for (Customer c :
-                    customerList) {
-                System.out.println(c);
+        while (true) {
+            System.out.println("Enter Customer Name");
+            String nameSearch = sc.nextLine();
+            List<Customer> customerList = customerRepository.getByName(nameSearch);
+            if (customerList == null) {
+                System.out.println("Name Not Found");
+            } else {
+                for (Customer c : customerList) {
+                    System.out.println(c);
+                }
+                break;
             }
-            break;
         }
-    }
     }
 }

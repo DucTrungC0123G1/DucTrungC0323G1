@@ -67,8 +67,7 @@ public class CustomerRepository implements ICustomerRepository {
         customerList = getAll();
         customerList.remove(customer);
         List<String> stringList = new ArrayList<>();
-        for (Customer temp :
-                customerList) {
+        for (Customer temp : customerList) {
             stringList.add(temp.getName() + "," + temp.getDateOfBirth() + "," + temp.getIdentityCarNumber() + "," + temp.getTelephone() +
                     "," + temp.getEmail() + "," + temp.getIdCustomer() + "," + temp.getTypeCustomer() + "," + temp.getAddress());
         }

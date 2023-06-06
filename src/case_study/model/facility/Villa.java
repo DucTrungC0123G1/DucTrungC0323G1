@@ -1,6 +1,6 @@
 package case_study.model.facility;
 
-public class Villa extends FacilityModel{
+public class Villa extends Facility {
     String villaStandard;
     double swimArea;
     int numberFloor;

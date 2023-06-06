@@ -3,11 +3,10 @@ package case_study.ultils;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class ValidateRegex {
+    static Scanner sc = new Scanner(System.in);
 
     private static final String REGEX_NAME = "^[A-Z][a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
 
@@ -117,19 +116,21 @@ public class ValidateRegex {
     }
 
     private static final String REGEX_SALARY = "^[1-9]+$";
-    static public String checkSalary(){
+
+    static public String checkSalary() {
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
         String salary = null;
-        while (flag){
+        while (flag) {
             System.out.println("Enter Salary: ");
             salary = sc.nextLine();
-            if (salary.matches(REGEX_SALARY)){
+            if (salary.matches(REGEX_SALARY)) {
                 flag = false;
             }
         }
         return salary;
     }
+
     private static final String REGEX_ID_CUSTOMER = "^KH-[0-9]{4}$";
 
     static public String checkIdCustomer() {
@@ -144,6 +145,146 @@ public class ValidateRegex {
             }
         }
         return idCustomer;
+    }
+
+    private static final String REGEX_ID_ROOM = "^SVRO-[0-9]{4}$";
+
+    static public String checkIdRoom() {
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        String idServiceRoom = null;
+        while (flag) {
+            System.out.println("Enter ID ServiceRoom: (SVRO-XXXX) ");
+            idServiceRoom = sc.nextLine();
+            if (idServiceRoom.matches(REGEX_ID_ROOM)) {
+                flag = false;
+            }
+        }
+        return idServiceRoom;
+    }
+
+    //    private static final String REGEX_AREA = "^[3-9]+[0-9]+$";
+    static public float checkArea() {
+        boolean flag = true;
+        float area = 0;
+        while (flag) {
+            System.out.println("Enter Area:(>=30m2) ");
+            area = Float.parseFloat(sc.nextLine());
+            if (area >= 30) {
+                flag = false;
+            } else {
+                System.err.println("Area >= 30m2");
+            }
+        }
+        return area;
+    }
+
+    public static Float checkRental() {
+        boolean flag = true;
+        float rental = 0;
+        while (flag) {
+            System.out.println("Enter Rental: ( >0)");
+            rental = Float.parseFloat(sc.nextLine());
+            if (rental > 0) {
+                flag = false;
+            } else {
+                System.err.println("Rental > 0");
+            }
+        }
+        return rental;
+    }
+
+    public static int checkMaxPeople() {
+        boolean flag = true;
+        int maxPeople = 0;
+        while (flag) {
+            System.out.println("Enter People: (0< X < 20)");
+            maxPeople = Integer.parseInt(sc.nextLine());
+            if (maxPeople > 0 && maxPeople < 20) {
+                flag = false;
+            } else {
+                System.err.println("0 < People < 20");
+            }
+        }
+        return maxPeople;
+    }
+
+    public static String checkTypeRent() {
+        boolean flag = true;
+        String typeRent ="";
+        do {
+            System.out.println("Choice TypeRent: \n" +
+                    "1. By Hour\n" +
+                    "2. By Day\n" +
+                    "3. By Month\n" +
+                    "4. By Year\n");
+            String choice =sc.nextLine();
+            switch (choice){
+                case "1":
+                    typeRent = "By Hour";
+                    flag = false;
+                    break;
+                case "2":
+                    typeRent = "By Day";
+                    flag = false;
+                    break;
+                case "3":
+                    typeRent = "By Month";
+                    flag = false;
+                    break;
+                case "4":
+                    typeRent = "By Year";
+                    flag = false;
+                    break;
+                default:
+                    System.err.println("Choice Again");
+                    flag = true;
+
+            }
+        }while (flag);
+        return typeRent;
+    }
+
+    private static final String REGEX_ID_HOUSE = "^SVHO-[0-9]{4}$";
+
+    static public String checkIdHouse() {
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        String idServiceHouse = null;
+        while (flag) {
+            System.out.println("Enter ID ServiceHouse: (SVHO-XXXX) ");
+            idServiceHouse = sc.nextLine();
+            if (idServiceHouse.matches(REGEX_ID_HOUSE)) {
+                flag = false;
+            }
+        }
+        return idServiceHouse;
+    }
+    private static final String REGEX_FLOOR = "^[1-9]$";
+    public static String checkFloor() {
+        boolean flag = true;
+        String floors = null;
+        while (flag){
+            System.out.println("Enter Floor: ");
+            floors = (sc.nextLine());
+            if (floors.matches(REGEX_FLOOR)){
+                flag = false;
+            }
+        }
+        return floors;
+    }
+    private static final String REGEX_ID_VILLA = "^SVVL-[0-9]{4}$";
+    public static String checkIdVilla() {
+        boolean flag= true;
+        String idVilla = null;
+        while (flag){
+            System.out.println("Enter ID ServiceVilla");
+            idVilla = sc.nextLine();
+            if (idVilla.matches(REGEX_ID_VILLA)){
+                flag =false;
+            }
+        }
+        return idVilla;
     }
 }
 
